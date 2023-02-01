@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/IamMarcoZ/b1oware/static/css/main.6796bc8f.css",
-    "main.js": "/IamMarcoZ/b1oware/static/js/main.58dc7bf6.js",
-    "static/js/787.b105f831.chunk.js": "/IamMarcoZ/b1oware/static/js/787.b105f831.chunk.js",
-    "static/media/background.jpg": "/IamMarcoZ/b1oware/static/media/background.5ffe7280b4708a563f18.jpg",
-    "index.html": "/IamMarcoZ/b1oware/index.html",
-    "main.6796bc8f.css.map": "/IamMarcoZ/b1oware/static/css/main.6796bc8f.css.map",
-    "main.58dc7bf6.js.map": "/IamMarcoZ/b1oware/static/js/main.58dc7bf6.js.map",
-    "787.b105f831.chunk.js.map": "/IamMarcoZ/b1oware/static/js/787.b105f831.chunk.js.map"
+    "main.css": "/IamMarcoZ/b1oware/src/static/css/main.e368f20a.css",
+    "main.js": "/IamMarcoZ/b1oware/src/static/js/main.afb2b59b.js",
+    "static/js/787.b105f831.chunk.js": "/IamMarcoZ/b1oware/src/static/js/787.b105f831.chunk.js",
+    "static/media/background.jpg": "/IamMarcoZ/b1oware/src/static/media/background.5ffe7280b4708a563f18.jpg",
+    "index.html": "/IamMarcoZ/b1oware/src/index.html",
+    "main.e368f20a.css.map": "/IamMarcoZ/b1oware/src/static/css/main.e368f20a.css.map",
+    "main.afb2b59b.js.map": "/IamMarcoZ/b1oware/src/static/js/main.afb2b59b.js.map",
+    "787.b105f831.chunk.js.map": "/IamMarcoZ/b1oware/src/static/js/787.b105f831.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6796bc8f.css",
-    "static/js/main.58dc7bf6.js"
+    "static/css/main.e368f20a.css",
+    "static/js/main.afb2b59b.js"
   ]
 }
