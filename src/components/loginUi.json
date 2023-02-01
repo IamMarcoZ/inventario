@@ -1,0 +1,10 @@
+{
+  "materialName": {
+    "ui:autoFocus": true,
+    "ui:textarea": "material"
+  },
+  "vendor": {
+    "ui:textarea": "vendor",
+    "ui:widget": "password"
+ }
+}

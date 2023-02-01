@@ -8,6 +8,10 @@ export interface IMaterial {
     position:String,
     withdrawal:number
 }
+export interface IUser {
+    userName:String,
+    password:String,
+}
 export interface IChangeEvent<T = any> {
     edit: boolean;
     formData: T;

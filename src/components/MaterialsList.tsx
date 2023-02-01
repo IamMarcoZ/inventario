@@ -38,13 +38,15 @@ export class MaterialsList extends Component<
   render() {
     return (
       <div>
-        <input
-          id="search"
-          className="searchMaterial"
-          type="text"
-          placeholder="Cerca per nome"
-          onChange={(e) => this.searchMaterial(e)}
-        />
+        <div className="searchDiv">
+          <input
+            id="search"
+            className="searchMaterial"
+            type="text"
+            placeholder="Cerca per nome"
+            onChange={(e) => this.searchMaterial(e)}
+          />
+        </div>
         <div>
           <Table className="table table-striped table-dark">
             <thead>
@@ -75,12 +77,36 @@ export class MaterialsList extends Component<
                     <td>{material.quantity + " Kg"}</td>
                     <td>{material.withdrawal}</td>
                     <td className="btnTd">
-                      <input id={`incrementInput${index + 1}`} className="operationInput" type="text" />
-                      <button className="operationBtn" type="button" onClick={()=>this.increment(material.id,material.quantity,index)}>Aggiungi</button>{" "}
+                      <input
+                        id={`incrementInput${index + 1}`}
+                        className="operationInput"
+                        type="text"
+                      />
+                      <button
+                        className="operationBtn"
+                        type="button"
+                        onClick={() =>
+                          this.increment(material.id, material.quantity, index)
+                        }
+                      >
+                        Aggiungi
+                      </button>{" "}
                     </td>
                     <td className="btnTd">
-                    <input id="withdrawInput" className="operationInput" type="text" />
-                      <button className="operationBtn" type="button" onClick={()=>this.withdraw(material.id,material.quantity,index)}>Preleva</button>{" "}
+                      <input
+                        id={`withdrawInput${index + 1}`}
+                        className="operationInput"
+                        type="text"
+                      />
+                      <button
+                        className="operationBtn"
+                        type="button"
+                        onClick={() =>
+                          this.withdraw(material.id, material.quantity, index)
+                        }
+                      >
+                        Preleva
+                      </button>{" "}
                     </td>
                   </tr>
                 );
@@ -92,7 +118,7 @@ export class MaterialsList extends Component<
     );
   }
 
-  private async fetchList(){
+  private async fetchList() {
     const materialsDbRef = collection(db, "Materials");
     await getDocs(materialsDbRef).then((response) =>
       this.setState({
@@ -100,64 +126,82 @@ export class MaterialsList extends Component<
       })
     );
   }
-  private increment(id : any, quantity:any,index:any){
-    try{const materialsDoc = doc(db,"Materials",id)
-    const sum =Number((document.getElementById(`incrementInput${index + 1}`) as HTMLInputElement).value)
-    const newQuantity = quantity + sum
-    console.log(materialsDoc,"materialsDoc")
-    console.log(sum,"sum")
-    updateDoc(materialsDoc, {
-      quantity: newQuantity
-    })}
-    catch(e){console.log(e)}
-    finally{ this.fetchList() }
+  private increment(id: any, quantity: any, index: any) {
+    try {
+      const materialsDoc = doc(db, "Materials", id);
+      const sum = Number(
+        (
+          document.getElementById(
+            `incrementInput${index + 1}`
+          ) as HTMLInputElement
+        ).value
+      );
+      const newQuantity = quantity + sum;
+      console.log(materialsDoc, "materialsDoc");
+      console.log(sum, "sum");
+      updateDoc(materialsDoc, {
+        quantity: newQuantity,
+      });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      this.fetchList();
+    }
   }
 
-  private withdraw(id : any, quantity:any,index:any) {
-    try{const materialsDoc = doc(db,"Materials",id)
-    const withdraw =Number((document.getElementById(`incrementInput${index + 1}`) as HTMLInputElement).value)
-    const newQuantity = quantity - withdraw
-    console.log(materialsDoc,"materialsDoc")
-    console.log(withdraw,"withdraw")
-    updateDoc(materialsDoc, {
-      quantity: newQuantity,
-      withdrawal: new Date().toLocaleDateString() + " " +withdraw+" " +"Kg"
-    })}
-    catch(e){console.log(e)}
-    finally{ this.fetchList()}    
+  private withdraw(id: any, quantity: any, index: any) {
+    try {
+      const materialsDoc = doc(db, "Materials", id);
+      const withdraw = Number(
+        (
+          document.getElementById(
+            `withdrawInput${index + 1}`
+          ) as HTMLInputElement
+        ).value
+      );
+      const newQuantity = quantity - withdraw;
+      console.log(materialsDoc, "materialsDoc");
+      console.log(withdraw, "withdraw");
+      updateDoc(materialsDoc, {
+        quantity: newQuantity,
+        withdrawal:
+          new Date().toLocaleDateString() + " " + withdraw + " " + "Kg",
+      });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      this.fetchList();
+    }
   }
 
   private async searchMaterial(e: any) {
     let filteredList: any = [];
-    let name = (e.target.value).toUpperCase();
+    let name = e.target.value.toUpperCase();
     console.log(name);
-    
-  
+
     try {
       if (name.length > 0 && name != undefined) {
-      const materialsDbRef = collection(db, "Materials");
-      await getDocs(materialsDbRef).then((response) => {
-        const materials = response.docs.map((doc: any) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        materials.filter((material: any) => {
-          if(material.materialName.toUpperCase().includes(name)){
-            filteredList.push(material);
-            this.setState({ materials: filteredList });
-          }
+        const materialsDbRef = collection(db, "Materials");
+        await getDocs(materialsDbRef).then((response) => {
+          const materials = response.docs.map((doc: any) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
+          materials.filter((material: any) => {
+            if (material.materialName.toUpperCase().includes(name)) {
+              filteredList.push(material);
+              this.setState({ materials: filteredList });
+            }
+          });
         });
-      })}
-        if (!name && name != undefined) {
-          this.fetchList()
-          };
-        
       }
-      catch (e: any) {
-        console.log(e);
+      if (!name && name != undefined) {
+        this.fetchList();
       }
-    } 
+    } catch (e: any) {
+      console.log(e);
+    }
   }
-
+}
 
 export default MaterialsList;

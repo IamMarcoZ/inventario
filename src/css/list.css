@@ -36,4 +36,20 @@ th{
     width: 200px;
 }
 
+.searchMaterial{
+    text-align: center;
+    border: 2px solid black;
+    margin: 0px 0px;
+    padding: 5px 5px;
+    left: 40%;
+    border-radius: 10px;
+    width: 200px;
+    top:20%;
+}
+.searchDiv{
+    width: 99%;
+    padding-top: 2%;
+    margin-bottom: 1%;
+}
+
 

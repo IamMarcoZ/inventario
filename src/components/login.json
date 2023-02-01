@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": {
+        "userName": {
+            "type": "string",
+            "title": "Username"
+        },
+        "password": {
+            "type": "string",
+            "title": "Password"
+        }
+    }
+}
