@@ -1,0 +1,32 @@
+{
+    "type": "object",
+                "properties": {
+                    "materialName": {
+                        "type": "string",
+                        "title": "Materiale"
+                    },
+                    "vendor": {
+                        "type": "string",
+                        "title": "Fornitore"
+                    },
+                    "price": {
+                        "type": "string",
+                        "title": "Prezzo"
+                    },
+                    "quantity": {
+                        "type": "string",
+                        "title": "Quantità"     
+                    },
+                    "position": {
+                        "type": "string",
+                        "title": "Posizione"     
+                    }
+                
+                    
+                 
+                }
+                
+    
+            }
+        
+    

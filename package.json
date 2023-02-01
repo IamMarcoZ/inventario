@@ -1,8 +1,8 @@
 {
   "name": "b1oware",
   "version": "0.1.0",
-  "private": true,
-  "homepage": "https://github.com/IamMarcoZ/bioware",
+  "private": false,
+  "homepage": "https://iammarcoz.github.io/b1oware/",
   "dependencies": {
     "@firebase/firestore": "^3.8.1",
     "@fluentui/react": "^8.105.1",

@@ -1,0 +1,24 @@
+
+{
+    "materialName": {
+        "ui:autoFocus": true,
+        "ui:textarea" : "material"
+    },
+    "vendor": {
+        "ui:textarea" : "vendor"
+    },
+    "price": {
+        "ui:textarea" : "price"
+    },
+    "quantity": {
+        "ui:textarea" : "quantity"
+        },
+    
+    "position": {
+        "ui:textarea" : "position"
+    },
+    "withdrawal": {
+        "ui:textarea" : "withdrawal"
+    }            
+            
+}

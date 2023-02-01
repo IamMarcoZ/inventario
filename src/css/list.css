@@ -1,0 +1,39 @@
+.headers{
+    text-align: center;
+    border: 10px solid black;
+    margin: 0px 0px;
+    padding: 5px 5px;
+    left: 40%;
+    border-radius: 10px;
+}
+
+.grid{
+    display: grid; grid-template-columns: auto auto;
+}
+th{
+    text-align: center;
+}
+.operationInput{
+    text-align: center;
+    border: 2px solid black;
+    margin: 0px 0px;
+    padding: 5px 5px;
+    left: 40%;
+    border-radius: 10px;
+    width: 60px;
+  
+}
+.operationBtn{
+    text-align: center;
+    border: 2px solid black;
+    margin: 0px 0px;
+    padding: 5px 5px;
+    left: 40%;
+    border-radius: 10px;
+    width: 100px;
+}
+.btnTd{
+    width: 200px;
+}
+
+
