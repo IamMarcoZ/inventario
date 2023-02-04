@@ -1,17 +1,19 @@
 
-.text-link {
-    color: inherit;
-    text-decoration: inherit;
-    font-family: fantasy;
-  }
-
 .routerBtn{
     width: 33%;
     background-color: springgreen;
     border: 1px solid black;
     border-radius: 10px;
-
+    font-weight: bold;
 }
+.routerBtn:hover {
+    background-color: green  ;
+ }
+ .routerBtn:active {
+    background-color: green  ;
+    box-shadow: 0 5px gray  ;
+    transform: translateY(2px) ;
+ }
 .title{
     font-size: 2rem;
     font-weight: bold;

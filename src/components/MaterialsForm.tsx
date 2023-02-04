@@ -11,6 +11,8 @@ import {
 import Form from "react-jsonschema-form";
 import "bootstrap";
 import { db } from "../firebase-config";
+import { toast, ToastContainer } from "react-toastify";
+import { redirect, useNavigate } from "react-router-dom";
 require("../css/form.css");
 
 export const formSchema = addLocValues(require("./materialsForm.json"));
@@ -71,18 +73,10 @@ export class MaterialsForm extends Component<
             >
               AGGIUNGI
             </PrimaryButton>
-
-            <PrimaryButton
-              value={"INDIETRO"}
-              className="cancelBtn"
-              title="CANCEL"
-              type="button"
-              onClick={this.onFormCancel}
-            >
-              INDIETRO
-            </PrimaryButton>
           </div>
         </Form>
+        <ToastContainer
+      />
       </div>
     );
   }
@@ -111,13 +105,20 @@ export class MaterialsForm extends Component<
     try {
       const materialsDbRef = collection(db, "Materials");
       const material: IMaterial = args.formData;
-      addDoc(materialsDbRef, material);
+      addDoc(materialsDbRef, material)
+      
+      toast.info(`Hai aggiunto ${material.materialName} nel database!`)
+     
     } catch (e) {
       console.log(e);
     }
+    finally{
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+     
   }
 
-  private onFormCancel() {}
 }
-
+}
 export default MaterialsForm;
