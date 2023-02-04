@@ -1,95 +1,82 @@
-import { PrimaryButton } from '@fluentui/react';
-import React, { Component } from 'react'
-import Form from 'react-jsonschema-form';
-import { IUser } from '../utils/interfaces';
-import { addLocValues } from '../utils/strings';
 
-export const formSchema = addLocValues(require("./login.json"));
-export const formUI = addLocValues(require("./loginUI.json"));
+import { useEffect, useState } from 'react'
+import { IUser } from '../utils/interfaces';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebase-config';
+import "../css/login.css"
+
+
+
 
 export interface ILoginProps {
-    onInput?: (e: InputEvent) => void;
-    onSubmit?: (user: IUser) => void;
-    onChange?: (material: IUser) => void;
-    onCancel?: () => void;
-    formSchema?: any;
-    formUI?: any;
-  }
-  export interface ILoginState {
-    user: IUser;
-    onInput?: (e: InputEvent) => void;
-    onSubmit?: (material: IUser) => void;
-    onChange?: (material: IUser) => void;
-    onCancel?: () => void;
-    formSchema: any;
-    formData: IUser;
-    formUI?: any;
-  }
+  onInput?: (e: InputEvent) => void;
+  onSubmit?: (user: IUser) => void;
+  onChange?: (user: IUser) => void;
+  onCancel?: () => void;
+  isAuth: string
+}
+export interface ILoginState {
+  user: IUser;
+  isAuth: string;
+  onInput?: (e: InputEvent) => void;
+  onSubmit?: (user: IUser) => void;
+  onChange?: (user: IUser) => void;
+  onCancel?: () => void;
 
-export class Login extends Component<ILoginProps,ILoginState> {
-   
-    constructor(props: ILoginState) {
-        super(props);
-        this.state = {
-            formUI: formUI,
-            formSchema: formSchema,
-            formData: { ...props.user },
-            user: props.user,
-            };
-        }
-
-
-  render() {
-    return (
-     
-        <div className="container col-md-4">
-        <Form
-          uiSchema={this.state.formUI}
-          className="row g-3 align-items-center md-3"
-          showErrorList={false}
-          noHtml5Validate={true}
-          onChange={this.onFormChange}
-          formData={this.state.formData}
-          schema={this.state.formSchema}
-          onSubmit={this.onFormSubmit}
-        >
-          <div>
-            <PrimaryButton
-              value={"AGGIUNGI"}
-              className="addBtn"
-              type="submit"
-              title="AGGIUNGI"
-            >
-              AGGIUNGI
-            </PrimaryButton>
-
-            <PrimaryButton
-              value={"INDIETRO"}
-              className="cancelBtn"
-              title="CANCEL"
-              type="button"
-              onClick={this.onFormCancel}
-            >
-              INDIETRO
-            </PrimaryButton>
-          </div>
-        </Form>
-      </div>
-    );
-  }
-
-
-
-  private onFormChange(){
-        
-  }
-
-  private onFormSubmit(){
-  }
-  private onFormCancel(){}
-  
 }
 
-  
+export const Login = () => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [loggedIn,setLoggedIn] = useState("false")
+  const isAuth = sessionStorage.getItem("isAuth")
 
+
+  
+ 
+
+  const onFormSubmit = async (e:any) => {
+    e.preventDefault()
+   
+ 
+    await signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user)
+        sessionStorage.setItem("isAuth", "true")
+        window.location.reload()
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage)
+      })
+   
+  }
+
+
+  return (
+
+    <div className="divForm">
+      <form className='form'>
+        <label className='label'>E-MAIL</label> <br />
+        <input className='inputForm' id='current-email' type={"email"} value={email} onChange={(e:any)=>setEmail(e.target.value)}/> <br />
+        <label className='label'>PASSWORD</label> <br />
+        <input className='inputForm' id='current-password' type={"password"} value={password} onChange={(e:any)=>setPassword(e.target.value)} /> <br />
+        <button className='loginBtn' type="submit" onClick={(e)=>onFormSubmit(e)}>LOGIN</button>
+      </form>
+    </div>
+  );
+
+
+}
 export default Login
+
+
+
+
+
+
+

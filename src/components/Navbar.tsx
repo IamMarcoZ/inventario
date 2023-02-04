@@ -1,23 +1,33 @@
-import { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Component, useEffect } from 'react'
+import { Link,Navigate, redirect } from 'react-router-dom'
 import "../css/navbar.css"
+import ConditionalNavLink from './conditionalNavlink'
 
 
-export default class Navbar extends Component {
-  render() {
+const Navbar =()=> {
+  const isAuth = sessionStorage.getItem("isAuth")
+  
+  useEffect(() => {
+    console.log(isAuth)
+  
+  }, [isAuth])
+  
+  
     return (
     
       <div className='container' >
         <h1 className='title'>BIOWARE</h1>
-        
         <nav>
             <ul>
-               <Link  className='text-link' to={"/materialsForm"} ><button className='routerBtn'>AGGIUNGI MATERIALE</button> </Link>
-               <Link  className='text-link' to={"/materialsList"} ><button className='routerBtn'>LISTA DEI MATERIALI</button> </Link>
+               <ConditionalNavLink  className='text-link' to={"/materialsForm"}  disabled={!isAuth} ><button className='routerBtn'>AGGIUNGI MATERIALE</button> </ConditionalNavLink>
+               <ConditionalNavLink  className='text-link' to={"/materialsList"} disabled={!isAuth}><button className='routerBtn'>LISTA DEI MATERIALI</button> </ConditionalNavLink>
             </ul>
         </nav>
+      
       </div>
     )
   }
-}
 
+ 
+
+export default  Navbar

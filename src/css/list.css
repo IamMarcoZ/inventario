@@ -31,7 +31,15 @@ th{
     left: 40%;
     border-radius: 10px;
     width: 100px;
+    font-weight: bold;
 }
+.operationBtn:hover {
+    background-color: grey;
+ }
+ .operationBtn:active {
+    background-color: grey;
+    transform: translateY(2px);
+ }
 .btnTd{
     width: 200px;
 }

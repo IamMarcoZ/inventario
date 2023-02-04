@@ -1,16 +1,16 @@
 import { AjvError, FormValidation, IdSchema, UiSchema } from "react-jsonschema-form";
 
 export interface IMaterial {
-    materialName:String,
-    vendor:String,
+    materialName:string,
+    vendor:string,
     price:number,
     quantity:number,
-    position:String,
+    position:string,
     withdrawal:number
 }
 export interface IUser {
-    userName:String,
-    password:String,
+    email:string,
+    password:string,
 }
 export interface IChangeEvent<T = any> {
     edit: boolean;
