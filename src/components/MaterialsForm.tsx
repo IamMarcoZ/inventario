@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { IMaterial } from "../utils/interfaces";
 import { addLocValues } from "../utils/strings";
 import { PrimaryButton } from "@fluentui/react";
@@ -12,7 +12,6 @@ import Form from "react-jsonschema-form";
 import "bootstrap";
 import { db } from "../firebase-config";
 import { toast, ToastContainer } from "react-toastify";
-import { redirect, useNavigate } from "react-router-dom";
 require("../css/form.css");
 
 export const formSchema = addLocValues(require("./materialsForm.json"));

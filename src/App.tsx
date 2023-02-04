@@ -8,6 +8,7 @@ import Login from './components/Login';
 import { useEffect, useState } from 'react';
 
 function App() {
+  const token = sessionStorage.getItem("token")
   const isAuth = sessionStorage.getItem("isAuth")
 
 
@@ -19,8 +20,8 @@ function App() {
         
         <HashRouter >
           <Navbar></Navbar>   
-          {!isAuth? <Login></Login> : null}
-          {isAuth? 
+          {(!isAuth) ? <Login></Login> : null}
+          {token && token.toString().length > 100 && isAuth? 
           <Routes>
             <Route path="/materialsForm" element={<MaterialsForm/> } />
             <Route path="/materialsList" element={<MaterialsList />} />

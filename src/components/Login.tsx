@@ -29,8 +29,6 @@ export interface ILoginState {
 export const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [loggedIn, setLoggedIn] = useState("false")
-  const isAuth = sessionStorage.getItem("isAuth")
 
 
 
@@ -38,13 +36,14 @@ export const Login = () => {
 
   const onFormSubmit = async (e: any) => {
     e.preventDefault()
-
-
-    await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+     signInWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        console.log(user)
+        const token = user.getIdTokenResult()
+        token.then((response)=>{ sessionStorage.setItem("token", response.token)
+       console.log(response.token)}
+        )
         sessionStorage.setItem("isAuth", "true")
         toast.info('Login effettuato con successo')
         setTimeout(() => {

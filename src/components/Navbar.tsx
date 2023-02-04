@@ -6,17 +6,16 @@ import ConditionalNavLink from './conditionalNavlink'
 
 
 const Navbar =()=> {
+  const token = sessionStorage.getItem("token")
   const isAuth = sessionStorage.getItem("isAuth")
   
-  useEffect(() => {
-    console.log(isAuth)
-  
-  }, [isAuth])
+
   
   
   function logout(){
     signOut(auth).then(() => {
-      sessionStorage.removeItem("isAuth")
+      sessionStorage.clear()
+      
       window.location.reload()
     }).catch((error) => {
       // An error happened.
@@ -30,9 +29,9 @@ const Navbar =()=> {
         <h1 className='title'>BIOWARE</h1>
         <nav>
             <ul>
-               <ConditionalNavLink  className='text-link' to={"/materialsForm"}  disabled={!isAuth} ><button className='routerBtn'>AGGIUNGI MATERIALE</button> </ConditionalNavLink>
-               <ConditionalNavLink  className='text-link' to={"/materialsList"} disabled={!isAuth}><button className='routerBtn'>LISTA DEI MATERIALI</button> </ConditionalNavLink>
-               {isAuth?  <button className='routerBtn' type='button' onClick={()=>logout()}>LOG OUT</button>
+               <ConditionalNavLink  className='text-link' to={"/materialsForm"}  disabled={!token} ><button className='routerBtn'>AGGIUNGI MATERIALE</button> </ConditionalNavLink>
+               <ConditionalNavLink  className='text-link' to={"/materialsList"} disabled={!token}><button className='routerBtn'>LISTA DEI MATERIALI</button> </ConditionalNavLink>
+               {token && token.toString().length > 100 && isAuth?  <button className='routerBtn' type='button' onClick={()=>logout()}>LOG OUT</button>
                :
                 null
                }
