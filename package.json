@@ -1,8 +1,8 @@
 {
-  "name": "b1oware",
+  "name": "inventario",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://iammarcoz.github.io/b1oware/",
+  "homepage": "https://iammarcoz.github.io/inventario/",
   "dependencies": {
     "@firebase/firestore": "^3.8.1",
     "@fluentui/react": "^8.105.1",
