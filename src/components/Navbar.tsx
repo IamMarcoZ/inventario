@@ -26,7 +26,7 @@ const Navbar =()=> {
     return (
     
       <div className='container' >
-        <h1 className='title'>BIOWARE</h1>
+        <h1 className='title'>INVENTARIO</h1>
         <nav>
             <ul>
                <ConditionalNavLink  className='text-link' to={"/materialsForm"}  disabled={!token} ><button className='routerBtn'>AGGIUNGI MATERIALE</button> </ConditionalNavLink>

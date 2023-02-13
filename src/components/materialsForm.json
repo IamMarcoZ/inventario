@@ -10,11 +10,11 @@
                         "title": "Fornitore"
                     },
                     "price": {
-                        "type": "string",
+                        "type": "number",
                         "title": "Prezzo"
                     },
                     "quantity": {
-                        "type": "string",
+                        "type": "number",
                         "title": "Quantità"     
                     },
                     "position": {

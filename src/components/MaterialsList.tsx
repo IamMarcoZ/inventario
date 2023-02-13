@@ -31,7 +31,7 @@ export class MaterialsList extends Component<
 
   async componentDidMount() {
     await this.fetchList();
-    const materialDoc = doc(db, "Materials");
+    const materialDoc = doc(db, "bioware-9e508-default-rtdb.europe-west1.firebasedatabase.app/Materials");
     console.log(materialDoc, "materialDoc");
   }
 
@@ -80,7 +80,7 @@ export class MaterialsList extends Component<
                       <input
                         id={`incrementInput${index + 1}`}
                         className="operationInput"
-                        type="text"
+                        type="number"
                       />
                       <button
                         className="operationBtn"
@@ -96,7 +96,7 @@ export class MaterialsList extends Component<
                       <input
                         id={`withdrawInput${index + 1}`}
                         className="operationInput"
-                        type="text"
+                        type="number"
                       />
                       <button
                         className="operationBtn"
@@ -119,7 +119,7 @@ export class MaterialsList extends Component<
   }
 
   private async fetchList() {
-    const materialsDbRef = collection(db, "Materials");
+    const materialsDbRef = collection(db, "/Materials");
     await getDocs(materialsDbRef).then((response) =>
       this.setState({
         materials: response.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
