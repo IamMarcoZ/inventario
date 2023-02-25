@@ -52,7 +52,7 @@ export class MaterialsForm extends Component<
 
   render() {
     return (
-      <div className="container col-md-4">
+      <div className="container col-md-4" style={{background:"grey",height:"100%"}}>
         <Form
           uiSchema={this.state.formUI}
           className="row g-3 align-items-center md-3"

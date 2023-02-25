@@ -13,11 +13,12 @@
 }
 
 .divForm{
-    position: fixed;
+    position: absolute;
     width: 100%;
     border-radius: 10px;
    margin:  59px 2px;
-
+   background-color: grey;
+    height: 100%;
 }
 .form{
     background:fixed;

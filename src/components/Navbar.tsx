@@ -25,7 +25,7 @@ const Navbar =()=> {
 
     return (
     
-      <div className='container' >
+      <div className='container' style={{background:"grey"}}>
         <h1 className='title'>INVENTARIO</h1>
         <nav>
             <ul>

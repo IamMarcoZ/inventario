@@ -5,7 +5,6 @@ import MaterialsForm from "./components/MaterialsForm";
 import MaterialsList from "./components/MaterialsList";
 import Footer from "./components/Footer"
 import Login from './components/Login';
-import { useEffect, useState } from 'react';
 
 function App() {
   const token = sessionStorage.getItem("token")
@@ -16,7 +15,7 @@ function App() {
 
  
   return (
-    <div className="App">
+    <div className="App" style={{backgroundColor:"grey"}}>
         
         <HashRouter >
           <Navbar></Navbar>   

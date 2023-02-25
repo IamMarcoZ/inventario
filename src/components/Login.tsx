@@ -1,7 +1,7 @@
 
-import { useEffect, useState } from 'react'
+import {useState } from 'react'
 import { IUser } from '../utils/interfaces';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase-config';
 import "../css/login.css"
 import { toast, ToastContainer } from 'react-toastify';
@@ -54,14 +54,12 @@ export const Login = () => {
         // ...
       })
       .catch((error) => {
+        toast.info('Autenticazione fallita')
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage)
       })
 
-  }
-  const openToast = () => {
-    
   }
 
   return (

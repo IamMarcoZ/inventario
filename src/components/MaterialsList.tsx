@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, Component } from "react";
+import {Component } from "react";
 import { db } from "../firebase-config";
 import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import "../css/list.css";
@@ -37,7 +37,7 @@ export class MaterialsList extends Component<
 
   render() {
     return (
-      <div>
+      <div className="materialsList">
         <div className="searchDiv">
           <input
             id="search"
@@ -180,7 +180,7 @@ export class MaterialsList extends Component<
     console.log(name);
 
     try {
-      if (name.length > 0 && name != undefined) {
+      if (name.length > 0 && name !== undefined) {
         const materialsDbRef = collection(db, "Materials");
         await getDocs(materialsDbRef).then((response) => {
           const materials = response.docs.map((doc: any) => ({
@@ -195,7 +195,34 @@ export class MaterialsList extends Component<
           });
         });
       }
-      if (!name && name != undefined) {
+      if (!name && name !== undefined) {
+        this.fetchList();
+      }
+    } catch (e: any) {
+      console.log(e);
+    }
+  }
+  private async searchMaterialByPosition(e: any) {
+    let filteredList: any = [];
+    let inputPosition = e.target.value.toUpperCase();
+
+    try {
+      if (inputPosition.length > 0 && inputPosition !== undefined) {
+        const materialsDbRef = collection(db, "Materials");
+        await getDocs(materialsDbRef).then((response) => {
+          const materials = response.docs.map((doc: any) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
+          materials.filter((material: any) => {
+            if (material.position.toUpperCase().includes(inputPosition)) {
+              filteredList.push(material);
+              this.setState({ materials: filteredList });
+            }
+          });
+        });
+      }
+      if (!inputPosition && inputPosition !== undefined) {
         this.fetchList();
       }
     } catch (e: any) {
