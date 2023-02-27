@@ -1,5 +1,6 @@
 .addBtn{
-    background-color: brown; 
+    font-weight: bold;
+    background-color: greenyellow; 
     border-radius: 10px ;;
     color: black;
     padding: 15px 32px;
@@ -11,12 +12,14 @@
     cursor: pointer;
 }
 .addBtn:hover {
-    background-color: brown;
+    background-color: green;
+    color: black;
  }
  .addBtn:active {
-    background-color: brown;
+    background-color: green;
     box-shadow: 0 5px gray;
     transform: translateY(2px);
+    color: black;
  }
 .cancelBtn{
     background-color: brown;
